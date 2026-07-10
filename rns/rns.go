@@ -9,7 +9,13 @@ import (
 
 type Pred = func(rune) bool
 
-func Eq[C rune | chrs.Chars](comparing C) Pred {
+func Eq(left rune) func(right rune) bool {
+	return func(right rune) bool {
+		return left == right
+	}
+}
+
+func Ov[C rune | chrs.Chars](comparing C) Pred {
 	pos := 0
 	runes := []rune(string(comparing))
 	return func(rn rune) bool {
