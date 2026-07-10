@@ -29,7 +29,7 @@ func In[C rune | chrs.Chars](comparing C) Pred {
 	}
 }
 
-func Runes[C rune | chrs.Chars](iterating C) iter.Seq[rune] {
+func It[C rune | chrs.Chars](iterating C) iter.Seq[rune] {
 	runes := []rune(string(iterating))
 	return func(yield Pred) {
 		for _, r := range runes {
