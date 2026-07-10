@@ -15,7 +15,7 @@ func Eq(left rune) func(right rune) bool {
 	}
 }
 
-func Ov[C rune | chrs.Chars](comparing C) Pred {
+func Nx[C chrs.Chars](comparing C) Pred {
 	pos := 0
 	runes := []rune(string(comparing))
 	return func(rn rune) bool {
@@ -28,7 +28,7 @@ func Ov[C rune | chrs.Chars](comparing C) Pred {
 	}
 }
 
-func In[C rune | chrs.Chars](comparing C) Pred {
+func In[C chrs.Chars](comparing C) Pred {
 	return func(rn rune) bool {
 		return strings.ContainsRune(
 			string(comparing), rn)
