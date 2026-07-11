@@ -15,6 +15,12 @@ func Eq(left rune) func(right rune) bool {
 	}
 }
 
+func Nq(left rune) func(right rune) bool {
+	return func(right rune) bool {
+		return left == right
+	}
+}
+
 func Nx[C chrs.Chars](comparing C) Pred {
 	pos := 0
 	runes := []rune(string(comparing))
