@@ -2,42 +2,14 @@ package rns
 
 import (
 	"iter"
-	"strings"
 
 	chrs "github.com/fwarcis/go-chars"
+	"github.com/fwarcis/go-chars/rn_prds"
 )
 
-type Pred = func(rune) bool
-
-func Eq(left rune) func(right rune) bool {
-	return func(right rune) bool {
-		return left == right
-	}
-}
-
-func Nx[C chrs.Chars](comparing C) Pred {
-	pos := 0
-	runes := []rune(string(comparing))
-	return func(rn rune) bool {
-		if pos == len(runes) {
-			return false
-		}
-		equals := runes[pos] == rn
-		pos++
-		return equals
-	}
-}
-
-func In[C chrs.Chars](comparing C) Pred {
-	return func(rn rune) bool {
-		return strings.ContainsRune(
-			string(comparing), rn)
-	}
-}
-
-func It[C rune | chrs.Chars](iterating C) iter.Seq[rune] {
+func Runes[C rune | chrs.Chars](iterating C) iter.Seq[rune] {
 	runes := []rune(string(iterating))
-	return func(yield Pred) {
+	return func(yield rn_prds.Pred) {
 		for _, r := range runes {
 			if !yield(r) {
 				return
