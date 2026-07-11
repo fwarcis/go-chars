@@ -17,7 +17,7 @@ func Eq(left rune) func(right rune) bool {
 
 func Nq(left rune) func(right rune) bool {
 	return func(right rune) bool {
-		return left == right
+		return left != right
 	}
 }
 
