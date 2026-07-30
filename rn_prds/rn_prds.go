@@ -4,23 +4,12 @@ import (
 	"strings"
 
 	chrs "github.com/fwarcis/go-chars"
+	"github.com/fwarcis/go-preds/prds"
 )
 
-type Pred = func(rune) bool
+type Pred = prds.Pred[rune]
 
-func Eq(left rune) func(right rune) bool {
-	return func(right rune) bool {
-		return left == right
-	}
-}
-
-func Nq(left rune) func(right rune) bool {
-	return func(right rune) bool {
-		return left != right
-	}
-}
-
-func Nx[C chrs.Chars](comparing C) func(next rune) bool {
+func Iter[C chrs.Chars](comparing C) Pred {
 	pos := 0
 	runes := []rune(string(comparing))
 	return func(rn rune) bool {
@@ -33,7 +22,7 @@ func Nx[C chrs.Chars](comparing C) func(next rune) bool {
 	}
 }
 
-func In[C chrs.Chars](comparing C) func(rn rune) bool {
+func Find[C chrs.Chars](comparing C) Pred {
 	return func(rn rune) bool {
 		return strings.ContainsRune(
 			string(comparing), rn)
