@@ -4,25 +4,24 @@ import (
 	"iter"
 
 	chrs "github.com/fwarcis/go-chars"
-	"github.com/fwarcis/go-chars/rn_prds"
 )
 
-func Runes[C rune | chrs.Chars](iterating C) iter.Seq[rune] {
+func Runes[R ~rune, C ~rune | chrs.Chars](iterating C) iter.Seq[R] {
 	runes := []rune(string(iterating))
-	return func(yield rn_prds.Pred) {
+	return func(yield func(R) bool) {
 		for _, r := range runes {
-			if !yield(r) {
+			if !yield(R(r)) {
 				return
 			}
 		}
 	}
 }
 
-func All[C rune | chrs.Chars](iterating C) iter.Seq2[int, rune] {
+func All[R ~rune, C ~rune | chrs.Chars](iterating C) iter.Seq2[int, R] {
 	runes := []rune(string(iterating))
-	return func(yield func(int, rune) bool) {
+	return func(yield func(int, R) bool) {
 		for i, r := range runes {
-			if !yield(i, r) {
+			if !yield(i, R(r)) {
 				return
 			}
 		}
