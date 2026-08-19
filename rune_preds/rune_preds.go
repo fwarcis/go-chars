@@ -1,4 +1,4 @@
-package rn_prds
+package rune_preds
 
 import (
 	"strings"
