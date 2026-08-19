@@ -25,6 +25,7 @@ func Iter[C chrs.Chars](comparing C) Pred {
 func Find[C chrs.Chars](comparing C) Pred {
 	return func(rn rune) bool {
 		return strings.ContainsRune(
-			string(comparing), rn)
+			string(comparing), rn,
+		)
 	}
 }
