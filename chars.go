@@ -1,4 +1,4 @@
-package chrs
+package chars
 
 type Chars interface {
 	~string | ~[]byte | ~[]rune
