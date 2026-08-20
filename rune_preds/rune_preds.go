@@ -3,13 +3,13 @@ package rune_preds
 import (
 	"strings"
 
-	chrs "github.com/fwarcis/go-chars"
-	"github.com/fwarcis/go-preds/prds"
+	"github.com/fwarcis/go-chars"
+	"github.com/fwarcis/go-preds/preds"
 )
 
-type Pred = prds.Pred[rune]
+type Pred = preds.Pred[rune]
 
-func Iter[C chrs.Chars](comparing C) Pred {
+func Iter[C chars.Chars](comparing C) Pred {
 	pos := 0
 	runes := []rune(string(comparing))
 	return func(rn rune) bool {
@@ -22,7 +22,7 @@ func Iter[C chrs.Chars](comparing C) Pred {
 	}
 }
 
-func Find[C chrs.Chars](comparing C) Pred {
+func Find[C chars.Chars](comparing C) Pred {
 	return func(rn rune) bool {
 		return strings.ContainsRune(
 			string(comparing), rn,
