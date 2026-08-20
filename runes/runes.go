@@ -3,10 +3,10 @@ package runes
 import (
 	"iter"
 
-	chrs "github.com/fwarcis/go-chars"
+	"github.com/fwarcis/go-chars"
 )
 
-func Runes[C ~rune | chrs.Chars](iterating C) iter.Seq[rune] {
+func Runes[C ~rune | chars.Chars](iterating C) iter.Seq[rune] {
 	runes := []rune(string(iterating))
 	return func(yield func(rune) bool) {
 		for _, rn := range runes {
@@ -17,7 +17,7 @@ func Runes[C ~rune | chrs.Chars](iterating C) iter.Seq[rune] {
 	}
 }
 
-func All[C ~rune | chrs.Chars](iterating C) iter.Seq2[int, rune] {
+func All[C ~rune | chars.Chars](iterating C) iter.Seq2[int, rune] {
 	runes := []rune(string(iterating))
 	return func(yield func(int, rune) bool) {
 		for i, rn := range runes {
